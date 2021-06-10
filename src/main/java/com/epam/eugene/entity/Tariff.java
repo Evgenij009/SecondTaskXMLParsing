@@ -1,6 +1,6 @@
 package com.epam.eugene.entity;
 
-public abstract class AbstractTariff {
+public class Tariff {
     private String name;
     private OperatorName operatorName;
     private double payroll;
@@ -8,10 +8,10 @@ public abstract class AbstractTariff {
     private double pricePerSMS;
     private Parameters parameters;
 
-    public AbstractTariff() {
+    public Tariff() {
     }
 
-    public AbstractTariff(String name, OperatorName operatorName, double payroll, CallPrices callPrices, double pricePerSMS, Parameters parameters) {
+    public Tariff(String name, OperatorName operatorName, double payroll, CallPrices callPrices, double pricePerSMS, Parameters parameters) {
         this.name = name;
         this.operatorName = operatorName;
         this.payroll = payroll;
@@ -73,7 +73,7 @@ public abstract class AbstractTariff {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AbstractTariff that = (AbstractTariff) o;
+        Tariff that = (Tariff) o;
 
         if (Double.compare(that.payroll, payroll) != 0) return false;
         if (Double.compare(that.pricePerSMS, pricePerSMS) != 0) return false;
