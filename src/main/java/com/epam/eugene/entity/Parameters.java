@@ -1,21 +1,21 @@
 package com.epam.eugene.entity;
 
 public class Parameters {
-    private long favoriteNumber;
-    private double feeConnection;
+    private int favoriteNumber;
+    private float feeConnection;
     private Tariffication tariffication;
 
-    public Parameters(long favoriteNumber, double feeConnection, Tariffication tariffication) {
+    public Parameters(int favoriteNumber, float feeConnection, Tariffication tariffication) {
         this.favoriteNumber = favoriteNumber;
         this.feeConnection = feeConnection;
         this.tariffication = tariffication;
     }
 
-    public void setFavoriteNumber(long favoriteNumber) {
+    public void setFavoriteNumber(int favoriteNumber) {
         this.favoriteNumber = favoriteNumber;
     }
 
-    public void setFeeConnection(double feeConnection) {
+    public void setFeeConnection(float feeConnection) {
         this.feeConnection = feeConnection;
     }
 
@@ -23,11 +23,11 @@ public class Parameters {
         this.tariffication = tariffication;
     }
 
-    public long getFavoriteNumber() {
+    public int getFavoriteNumber() {
         return favoriteNumber;
     }
 
-    public double getFeeConnection() {
+    public float getFeeConnection() {
         return feeConnection;
     }
 

@@ -1,22 +1,28 @@
 package com.epam.eugene.entity;
 
+import java.time.LocalDate;
+
 public class Tariff {
     private String name;
+    private String vendorCode;
+    private LocalDate localDate;
+    private float payroll;
+    private float smsPrice;
     private OperatorName operatorName;
-    private double payroll;
     private CallPrices callPrices;
-    private double pricePerSMS;
     private Parameters parameters;
 
     public Tariff() {
     }
 
-    public Tariff(String name, OperatorName operatorName, double payroll, CallPrices callPrices, double pricePerSMS, Parameters parameters) {
+    public Tariff(String name, String vendorCode, LocalDate localDate, float payroll, float smsPrice, OperatorName operatorName, CallPrices callPrices, Parameters parameters) {
         this.name = name;
-        this.operatorName = operatorName;
+        this.vendorCode = vendorCode;
+        this.localDate = localDate;
         this.payroll = payroll;
+        this.smsPrice = smsPrice;
+        this.operatorName = operatorName;
         this.callPrices = callPrices;
-        this.pricePerSMS = pricePerSMS;
         this.parameters = parameters;
     }
 
@@ -28,6 +34,22 @@ public class Tariff {
         this.name = name;
     }
 
+    public String getVendorCode() {
+        return vendorCode;
+    }
+
+    public void setVendorCode(String vendorCode) {
+        this.vendorCode = vendorCode;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
+    }
+
     public OperatorName getOperatorName() {
         return operatorName;
     }
@@ -36,11 +58,11 @@ public class Tariff {
         this.operatorName = operatorName;
     }
 
-    public double getPayroll() {
+    public float getPayroll() {
         return payroll;
     }
 
-    public void setPayroll(double payroll) {
+    public void setPayroll(float payroll) {
         this.payroll = payroll;
     }
 
@@ -52,12 +74,12 @@ public class Tariff {
         this.callPrices = callPrices;
     }
 
-    public double getPricePerSMS() {
-        return pricePerSMS;
+    public float getSmsPrice() {
+        return smsPrice;
     }
 
-    public void setPricePerSMS(double pricePerSMS) {
-        this.pricePerSMS = pricePerSMS;
+    public void setSmsPrice(float smsPrice) {
+        this.smsPrice = smsPrice;
     }
 
     public Parameters getParameters() {
@@ -73,39 +95,41 @@ public class Tariff {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Tariff that = (Tariff) o;
+        Tariff tariff = (Tariff) o;
 
-        if (Double.compare(that.payroll, payroll) != 0) return false;
-        if (Double.compare(that.pricePerSMS, pricePerSMS) != 0) return false;
-        if (!name.equals(that.name)) return false;
-        if (operatorName != that.operatorName) return false;
-        if (!callPrices.equals(that.callPrices)) return false;
-        return parameters.equals(that.parameters);
+        if (Float.compare(tariff.payroll, payroll) != 0) return false;
+        if (Float.compare(tariff.smsPrice, smsPrice) != 0) return false;
+        if (name != null ? !name.equals(tariff.name) : tariff.name != null) return false;
+        if (vendorCode != null ? !vendorCode.equals(tariff.vendorCode) : tariff.vendorCode != null) return false;
+        if (localDate != null ? !localDate.equals(tariff.localDate) : tariff.localDate != null) return false;
+        if (operatorName != tariff.operatorName) return false;
+        if (callPrices != null ? !callPrices.equals(tariff.callPrices) : tariff.callPrices != null) return false;
+        return parameters != null ? parameters.equals(tariff.parameters) : tariff.parameters == null;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = name.hashCode();
-        result = 31 * result + operatorName.hashCode();
-        temp = Double.doubleToLongBits(payroll);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + callPrices.hashCode();
-        temp = Double.doubleToLongBits(pricePerSMS);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + parameters.hashCode();
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (vendorCode != null ? vendorCode.hashCode() : 0);
+        result = 31 * result + (localDate != null ? localDate.hashCode() : 0);
+        result = 31 * result + (payroll != +0.0f ? Float.floatToIntBits(payroll) : 0);
+        result = 31 * result + (smsPrice != +0.0f ? Float.floatToIntBits(smsPrice) : 0);
+        result = 31 * result + (operatorName != null ? operatorName.hashCode() : 0);
+        result = 31 * result + (callPrices != null ? callPrices.hashCode() : 0);
+        result = 31 * result + (parameters != null ? parameters.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("AbstractTariff{");
+        final StringBuffer sb = new StringBuffer("Tariff{");
         sb.append("name='").append(name).append('\'');
-        sb.append(", operatorName=").append(operatorName);
+        sb.append(", vendorCode='").append(vendorCode).append('\'');
+        sb.append(", localDate=").append(localDate);
         sb.append(", payroll=").append(payroll);
+        sb.append(", smsPrice=").append(smsPrice);
+        sb.append(", operatorName=").append(operatorName);
         sb.append(", callPrices=").append(callPrices);
-        sb.append(", pricePerSMS=").append(pricePerSMS);
         sb.append(", parameters=").append(parameters);
         sb.append('}');
         return sb.toString();

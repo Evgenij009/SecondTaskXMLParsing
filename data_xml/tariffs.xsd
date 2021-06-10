@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="urn:by.epam.eugene"
+        xmlns:tns="urn:by.epam.eugene"
+        elementFormDefault="qualified">
+
+    <element name="tariffs">
+        <complexType>
+            <sequence>
+                <element name="tariff" type="tns:Tariff" minOccurs="1" maxOccurs="100"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Tariff">
+        <sequence>
+            <element name="name" type="tns:Name"/>
+            <element name="payroll" type="float"/>
+            <element name="smsPrice" type="float"/>
+            <element name="operatorName" type="tns:OperatorName"/>
+            <element name="callPrices" type="tns:CallPrices"/>
+            <element name="parameters" type="tns:Parameters"/>
+        </sequence>
+        <attribute name="vendorCode" type="tns:VendorCode" use="required"/>
+        <attribute name="localDate" type="date" use="required"/>
+    </complexType>
+
+    <complexType name="CallPrices">
+        <sequence>
+            <element name="priceWithinTheNetwork" type="float"/>
+            <element name="priceOutsideNetwork" type="float"/>
+            <element name="pricelandlinePhones" type="float"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Parameters">
+        <sequence>
+            <element name="feeConnection" type="float"/>
+            <element name="favoriteNumber" type="positiveInteger"/>
+            <element name="tariffication" type="tns:Tariffication"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="Tariffication">
+        <restriction base="string">
+            <enumeration value="TWELVE_SECOND"/>
+            <enumeration value="MINUTE"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Name">
+        <restriction base="string">
+            <pattern value="[a-zA-Z]{2,50}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="VendorCode">
+        <restriction base="ID">
+            <pattern value="[A-Z]{2}\d{4}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="OperatorName">
+        <restriction base="string">
+            <enumeration value="MTS"/>
+            <enumeration value="A1"/>
+            <enumeration value="LIFE"/>
+            <enumeration value="BELTELECOM"/>
+        </restriction>
+    </simpleType>
+
+</schema>
