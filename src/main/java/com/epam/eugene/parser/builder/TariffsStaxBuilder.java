@@ -1,8 +1,9 @@
-package com.epam.eugene.parser.stax;
+package com.epam.eugene.parser.builder;
 
 import com.epam.eugene.entity.*;
-import com.epam.eugene.parser.builder.AbstractTariffsBuilder;
-import com.epam.eugene.parser.sax.TariffXmlTag;
+import com.epam.eugene.exception.TariffException;
+import com.epam.eugene.parser.TariffXmlTag;
+import com.epam.eugene.validation.CustomFileValidator;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -15,8 +16,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.SplittableRandom;
-import java.util.Stack;
 
 public class TariffsStaxBuilder extends AbstractTariffsBuilder {
     private XMLInputFactory inputFactory;
@@ -31,7 +30,11 @@ public class TariffsStaxBuilder extends AbstractTariffsBuilder {
     }
 
     @Override
-    public void buildSetTariffs(String filePath) {
+    public void buildSetTariffs(String filePath) throws TariffException {
+        if (!CustomFileValidator.isFileValid(filePath)) {
+            logger.error("file invalid: " + filePath);
+            throw new TariffException("file invalid: " + filePath);
+        }
         XMLStreamReader reader;
         String name;
         try (FileInputStream inputStream = new FileInputStream(new File(filePath))) {
@@ -46,16 +49,14 @@ public class TariffsStaxBuilder extends AbstractTariffsBuilder {
                     }
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (XMLStreamException | FileNotFoundException e) {
+            logger.error("Build Tariffs: " + e);
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
+            logger.error("Build Tariffs: " + e);
         }
     }
 
-    private Tariff buildTariff(XMLStreamReader reader) throws XMLStreamException {
+    private Tariff buildTariff(XMLStreamReader reader) throws TariffException, XMLStreamException {
         Tariff tariff = new Tariff();
         tariff.setVendorCode(reader.getAttributeValue(null, TariffXmlTag.VENDOR_CODE.getValue()));
         LocalDate localDate = LocalDate.parse(reader.getAttributeValue(null, TariffXmlTag.LOCAL_DATE.getValue()));
@@ -83,10 +84,11 @@ public class TariffsStaxBuilder extends AbstractTariffsBuilder {
                     }
             }
         }
-        throw new XMLStreamException("Unknow element in tag <Tariff>");
+        logger.warn("Unknow element in tag <Tariff>");
+        throw new TariffException("Unknow element in tag <Tariff>");
     }
 
-    private CallPrices getXMLCallPrices(XMLStreamReader reader) throws XMLStreamException {
+    private CallPrices getXMLCallPrices(XMLStreamReader reader) throws XMLStreamException, TariffException {
         CallPrices callPrices = new CallPrices();
         int type;
         String name;
@@ -108,10 +110,11 @@ public class TariffsStaxBuilder extends AbstractTariffsBuilder {
                     }
             }
         }
-        throw new XMLStreamException("Unknown element in tag <callPrices>");
+        logger.warn("Unknown element in tag <callPrices>");
+        throw new TariffException("Unknown element in tag <callPrices>");
     }
 
-    private Parameters getXMLParameters(XMLStreamReader reader) throws XMLStreamException {
+    private Parameters getXMLParameters(XMLStreamReader reader) throws XMLStreamException, TariffException {
         Parameters parameters = new Parameters();
         int type;
         String name;
@@ -133,6 +136,7 @@ public class TariffsStaxBuilder extends AbstractTariffsBuilder {
                     }
             }
         }
+        logger.warn("Unknown element in tag <parameters>");
         throw new XMLStreamException("Unknown element in tag <parameters>");
     }
 

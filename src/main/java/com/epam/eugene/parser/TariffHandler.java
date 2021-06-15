@@ -1,8 +1,11 @@
-package com.epam.eugene.parser.sax;
+package com.epam.eugene.parser;
 
 import com.epam.eugene.entity.OperatorName;
 import com.epam.eugene.entity.Tariff;
 import com.epam.eugene.entity.Tariffication;
+import com.epam.eugene.exception.TariffException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -12,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class TariffHandler extends DefaultHandler {
+    private static Logger logger = LogManager.getLogger();
     private Set<Tariff> tariffs;
     private Tariff current;
     private TariffXmlTag currentXmlTag;
@@ -34,7 +38,12 @@ public class TariffHandler extends DefaultHandler {
             LocalDate localDate = LocalDate.parse(attrs.getValue(1));
             current.setLocalDate(localDate);
         } else {
-            TariffXmlTag temp = TariffXmlTag.getTag(qName);
+            TariffXmlTag temp = null;
+            try {
+                temp = TariffXmlTag.getTag(qName);
+            } catch (TariffException e) {
+                logger.error("Line tag is null or empty.");
+            }
             if (withText.contains(temp)) {
                 currentXmlTag = temp;
             }

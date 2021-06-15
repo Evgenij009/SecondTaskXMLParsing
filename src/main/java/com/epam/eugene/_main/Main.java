@@ -1,33 +1,16 @@
 package com.epam.eugene._main;
 
+import com.epam.eugene.exception.TariffException;
 import com.epam.eugene.parser.builder.AbstractTariffsBuilder;
 import com.epam.eugene.factory.TariffBuilderFactory;
 
 public class Main {
-    public static void main(String... args) {
-        String type = "stax";
-        AbstractTariffsBuilder builder = TariffBuilderFactory.createStudentBuilder(type);
+    public static void main(String... args) throws TariffException {
+        String type = "dom";
+        AbstractTariffsBuilder builder = TariffBuilderFactory.createTariffBuilder(type);
         builder.buildSetTariffs("data_xml/tariffs.xml");
         System.out.println(builder.getTariffs());
-        System.out.println(builder.getTariffs().size());
-        //Validation
-//        String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
-//        String fileName = "data_xml/tariffs.xml";
-//        String schemaName = "data_xml/tariffs.xsd";
-//        SchemaFactory factory = SchemaFactory.newInstance(language);
-//        File schemaLocation = new File(schemaName);
-//        try {
-//            // schema creation
-//            Schema schema = factory.newSchema(schemaLocation);
-//            // creating a schema-based validator
-//            Validator validator = schema.newValidator();
-//            Source source = new StreamSource(fileName);
-//            // document check
-//            validator.setErrorHandler(new TariffErrorHandler());
-//            validator.validate(source);
-//        } catch (SAXException | IOException e) {
-//            System.err.println(fileName + " is not correct or valid\n" + e);
-//        }
+        System.out.println(builder.getTariffs().hashCode());
 
 //        try {
 //            // SAX parser creating & configuring

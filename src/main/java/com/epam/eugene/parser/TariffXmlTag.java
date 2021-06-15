@@ -1,4 +1,8 @@
-package com.epam.eugene.parser.sax;
+package com.epam.eugene.parser;
+
+import com.epam.eugene.exception.TariffException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public enum TariffXmlTag {
     TARIFFS("tariffs"),
@@ -28,7 +32,10 @@ public enum TariffXmlTag {
         return value;
     }
 
-    public static TariffXmlTag getTag(String line) {
+    public static TariffXmlTag getTag(String line) throws TariffException {
+        if (line == null || line.isEmpty()) {
+            throw new TariffException("Line tag is null or empty.");
+        }
         for (TariffXmlTag tag : TariffXmlTag.values()) {
             if (tag.value.equalsIgnoreCase(line)) {
                 return tag;

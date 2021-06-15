@@ -1,6 +1,8 @@
 package com.epam.eugene.parser.builder;
 
 import com.epam.eugene.entity.*;
+import com.epam.eugene.exception.TariffException;
+import com.epam.eugene.validation.CustomFileValidator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,7 +15,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Set;
 
 public class TariffsDomBuilder extends AbstractTariffsBuilder{
     private DocumentBuilder docBuilder;
@@ -24,11 +25,15 @@ public class TariffsDomBuilder extends AbstractTariffsBuilder{
         try {
             docBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
+            logger.fatal("Initial config: " + e);
         }
     }
 
-    public void buildSetTariffs(String filePath) {
+    public void buildSetTariffs(String filePath) throws TariffException {
+        if (!CustomFileValidator.isFileValid(filePath)) {
+            logger.fatal("File invalid: " + filePath);
+            throw new TariffException("File invalid: " + filePath);
+        }
         Document doc;
         try {
             doc = docBuilder.parse(filePath);
@@ -40,13 +45,17 @@ public class TariffsDomBuilder extends AbstractTariffsBuilder{
                 tariffs.add(tariff);
             }
         } catch (IOException | SAXException e) {
-            e.printStackTrace();
+            logger.error("Build tariffs: " + e);
         }
     }
 
-    private Tariff buildTariff(Element tariffElement) {
+    private Tariff buildTariff(Element tariffElement) throws TariffException {
+        if (tariffElement == null) {
+            logger.error("Tariff element is NULL!");
+            throw new TariffException("Tariff element is NULL!");
+        }
         Tariff tariff = new Tariff();
-        //add null check
+
         tariff.setVendorCode(tariffElement.getAttribute("vendorCode"));
         LocalDate localDate = LocalDate.parse(tariffElement.getAttribute("localDate"));
         tariff.setLocalDate(localDate);

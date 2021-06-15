@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 public class TariffBuilderFactory {
     private static Logger logger = LogManager.getLogger();
-    private static final String MESSAGE_ERROR = "Type parser is invalid";
+    private static final String MESSAGE_ERROR_TYPE_PARSER = "Type parser is invalid";
 
     private enum TypeParser {
         SAX, STAX, DOM
@@ -19,30 +19,30 @@ public class TariffBuilderFactory {
     private TariffBuilderFactory() {
     }
 
-    public static AbstractTariffsBuilder createTariffBuilder(String typeParser)  {
+    public static AbstractTariffsBuilder createTariffBuilder(String typeParser) throws TariffException {
+        if (typeParser == null || typeParser.isEmpty()) {
+            logger.error(MESSAGE_ERROR_TYPE_PARSER);
+            throw new TariffException(MESSAGE_ERROR_TYPE_PARSER);
+        }
         TypeParser type = null;
         try {
-            if (typeParser == null || typeParser.isEmpty()) {
-                logger.error(MESSAGE_ERROR);
-                throw new TariffException(MESSAGE_ERROR);
-            }
             type = TypeParser.valueOf(typeParser.toUpperCase());
-            switch (type) {
-                case DOM -> {
-                    return new TariffsDomBuilder();
-                }
-                case STAX -> {
-                    return new TariffsStaxBuilder();
-                }
-                case SAX -> {
-                    return new TariffsSaxBuilder();
-                }
-                default -> throw new EnumConstantNotPresentException(
-                        type.getDeclaringClass(), type.name());
-            }
-        } catch (TariffException e) {
+        } catch (IllegalArgumentException e) {
             logger.error("Create tariff builder: " + e);
+            throw new TariffException(MESSAGE_ERROR_TYPE_PARSER);
         }
-        return null;
+        switch (type) {
+            case DOM -> {
+                return new TariffsDomBuilder();
+            }
+            case STAX -> {
+                return new TariffsStaxBuilder();
+            }
+            case SAX -> {
+                return new TariffsSaxBuilder();
+            }
+            default -> throw new EnumConstantNotPresentException(
+                    type.getDeclaringClass(), type.name());
+        }
     }
 }
