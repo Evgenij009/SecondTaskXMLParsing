@@ -1,7 +1,9 @@
 package com.epam.eugene._main;
 
+import com.epam.eugene.builder.TariffsSaxBuilder;
 import com.epam.eugene.exception.TariffErrorHandler;
 import com.epam.eugene.parser.sax.ConsoleTariffHandler;
+import com.epam.eugene.parser.sax.TariffXmlTag;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
@@ -9,6 +11,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String... args) {
@@ -34,16 +38,22 @@ public class Main {
 //        } catch (SAXException | IOException e) {
 //            System.err.println(fileName + " is not correct or valid\n" + e);
 //        }
-        try {
-            // SAX parser creating & configuring
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser parser = factory.newSAXParser();
-            XMLReader reader = parser.getXMLReader();
-            reader.setContentHandler(new ConsoleTariffHandler());
-            reader.setErrorHandler(new TariffErrorHandler());
-            reader.parse("data_xml/tariffs.xml");
-        } catch (SAXException | IOException | ParserConfigurationException e) {
-            e.printStackTrace();
-        }
+
+//        try {
+//            // SAX parser creating & configuring
+//            SAXParserFactory factory = SAXParserFactory.newInstance();
+//            SAXParser parser = factory.newSAXParser();
+//            XMLReader reader = parser.getXMLReader();
+//            reader.setContentHandler(new ConsoleTariffHandler());
+//            reader.setErrorHandler(new TariffErrorHandler());
+//            reader.parse("data_xml/tariffs.xml");
+//        } catch (SAXException | IOException | ParserConfigurationException e) {
+//            e.printStackTrace();
+//        }
+
+        TariffsSaxBuilder saxBuilder = new TariffsSaxBuilder();
+        saxBuilder.buildSetTariffs("data_xml/tariffs.xml");
+        System.out.println(saxBuilder.getTariffs());
+
     }
 }

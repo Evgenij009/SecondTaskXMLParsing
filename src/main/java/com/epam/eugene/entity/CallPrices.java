@@ -5,6 +5,9 @@ public class CallPrices {
     private float priceOutsideNetwork;
     private float pricelandlinePhones;
 
+    public CallPrices() {
+    }
+
     public CallPrices(float priceWithinTheNetwork, float priceOutsideNetwork, float pricelandlinePhones) {
         this.priceWithinTheNetwork = priceWithinTheNetwork;
         this.priceOutsideNetwork = priceOutsideNetwork;
@@ -35,4 +38,12 @@ public class CallPrices {
         this.pricelandlinePhones = pricelandlinePhones;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("\n");
+        sb.append("\tpriceWithinTheNetwork=").append(priceWithinTheNetwork);
+        sb.append(", \n\tpriceOutsideNetwork=").append(priceOutsideNetwork);
+        sb.append(", \n\tpricelandlinePhones=").append(pricelandlinePhones);
+        return sb.toString();
+    }
 }

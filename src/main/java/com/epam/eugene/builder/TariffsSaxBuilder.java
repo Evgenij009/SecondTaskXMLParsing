@@ -1,25 +1,30 @@
-package com.epam.eugene.parser.sax;
+package com.epam.eugene.builder;
 
 import com.epam.eugene.builder.AbstractTariffsBuilder;
 import com.epam.eugene.exception.TariffErrorHandler;
 import com.epam.eugene.entity.Tariff;
 import com.epam.eugene.exception.TariffException;
+import com.epam.eugene.parser.sax.TariffHandler;
+import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import java.io.IOException;
 import java.util.Set;
 
 public class TariffsSaxBuilder extends AbstractTariffsBuilder {
     private XMLReader reader;
-    private TariffHandler handler;
+    private TariffHandler handler = new TariffHandler();
 
     public TariffsSaxBuilder() {
-        SAXParserFactory factory = new SAXParserFactory.newInstance();
+        //reader configuration
+        SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             SAXParser saxParser = factory.newSAXParser();
             reader  = saxParser.getXMLReader();
-        } catch (TariffException e) {
+        } catch (SAXException | ParserConfigurationException e) {
             System.err.println(e);
         }
         reader.setErrorHandler(new TariffErrorHandler());
@@ -30,11 +35,10 @@ public class TariffsSaxBuilder extends AbstractTariffsBuilder {
         super(tariffs);
     }
 
-    @Override
     public void buildSetTariffs(String filePath) {
         try {
             reader.parse(filePath);
-        } catch (TariffException e) {
+        } catch (IOException | SAXException e) {
             System.err.println(e);
         }
         tariffs = handler.getTariffs();

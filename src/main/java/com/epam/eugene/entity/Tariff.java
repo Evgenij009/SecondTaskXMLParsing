@@ -9,8 +9,8 @@ public class Tariff {
     private float payroll;
     private float smsPrice;
     private OperatorName operatorName;
-    private CallPrices callPrices;
-    private Parameters parameters;
+    private CallPrices callPrices = new CallPrices();
+    private Parameters parameters = new Parameters();
 
     public Tariff() {
     }
@@ -122,16 +122,15 @@ public class Tariff {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Tariff{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", vendorCode='").append(vendorCode).append('\'');
-        sb.append(", localDate=").append(localDate);
-        sb.append(", payroll=").append(payroll);
-        sb.append(", smsPrice=").append(smsPrice);
-        sb.append(", operatorName=").append(operatorName);
-        sb.append(", callPrices=").append(callPrices);
-        sb.append(", parameters=").append(parameters);
-        sb.append('}');
+        final StringBuffer sb = new StringBuffer("\nTariff");
+        sb.append("\nname='").append(name).append('\'');
+        sb.append(", \nvendorCode='").append(vendorCode).append('\'');
+        sb.append(", \nlocalDate=").append(localDate);
+        sb.append(", \npayroll=").append(payroll);
+        sb.append(", \nsmsPrice=").append(smsPrice);
+        sb.append(", \noperatorName=").append(operatorName);
+        sb.append(", \ncallPrices").append(callPrices);
+        sb.append(", \nparameters").append(parameters);
         return sb.toString();
     }
 }

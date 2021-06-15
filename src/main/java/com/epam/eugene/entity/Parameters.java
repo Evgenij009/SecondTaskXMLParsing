@@ -5,6 +5,9 @@ public class Parameters {
     private float feeConnection;
     private Tariffication tariffication;
 
+    public Parameters() {
+    }
+
     public Parameters(int favoriteNumber, float feeConnection, Tariffication tariffication) {
         this.favoriteNumber = favoriteNumber;
         this.feeConnection = feeConnection;
@@ -35,4 +38,12 @@ public class Parameters {
         return tariffication;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("\n");
+        sb.append("\tfavoriteNumber=").append(favoriteNumber);
+        sb.append(", \n\tfeeConnection=").append(feeConnection);
+        sb.append(", \n\ttariffication=").append(tariffication);
+        return sb.toString();
+    }
 }
