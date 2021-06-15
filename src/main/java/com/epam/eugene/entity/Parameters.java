@@ -41,8 +41,8 @@ public class Parameters {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("\n");
-        sb.append("\tfavoriteNumber=").append(favoriteNumber);
-        sb.append(", \n\tfeeConnection=").append(feeConnection);
+        sb.append(" \tfeeConnection=").append(feeConnection);
+        sb.append(",\n\tfavoriteNumber=").append(favoriteNumber);
         sb.append(", \n\ttariffication=").append(tariffication);
         return sb.toString();
     }

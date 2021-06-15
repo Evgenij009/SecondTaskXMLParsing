@@ -16,7 +16,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class TariffsDomBuilder extends AbstractTariffsBuilder{
-    private Set<Tariff> tariffs;
     private DocumentBuilder docBuilder;
 
     public TariffsDomBuilder() {
@@ -27,10 +26,6 @@ public class TariffsDomBuilder extends AbstractTariffsBuilder{
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-    }
-
-    public Set<Tariff> getTariffs() {
-        return tariffs;
     }
 
     public void buildSetTariffs(String filePath) {

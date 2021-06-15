@@ -5,7 +5,7 @@ import com.epam.eugene.factory.TariffBuilderFactory;
 
 public class Main {
     public static void main(String... args) {
-        String type = "dom";
+        String type = "stax";
         AbstractTariffsBuilder builder = TariffBuilderFactory.createStudentBuilder(type);
         builder.buildSetTariffs("data_xml/tariffs.xml");
         System.out.println(builder.getTariffs());

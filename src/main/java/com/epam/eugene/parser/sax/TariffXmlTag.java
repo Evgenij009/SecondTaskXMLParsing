@@ -2,6 +2,7 @@ package com.epam.eugene.parser.sax;
 
 public enum TariffXmlTag {
     TARIFFS("tariffs"),
+    TARIFF("tariff"),
     VENDOR_CODE("vendorCode"),
     LOCAL_DATE("localDate"),
     NAME("name"),
@@ -10,11 +11,11 @@ public enum TariffXmlTag {
     OPERATOR_NAME("operatorName"),
     PRICE_WITHIN_THE_NETWORK("priceWithinTheNetwork"),
     PRICE_OUTSIDE_NETWORK("priceOutsideNetwork"),
-    PRICE_LAND_LINE_PHONES("priceOutsideNetwork"),
+    PRICE_LAND_LINE_PHONES("pricelandlinePhones"),
     FEE_CONNECTION("feeConnection"),
     FAVOURITY_NUMBER("favoriteNumber"),
     TARIFFICATION("tariffication"),
-    PRAMETERS("parameters"),
+    PARAMETERS("parameters"),
     CALL_PRICES("callPrices");
 
     private String value;
