@@ -1,25 +1,15 @@
 package com.epam.eugene._main;
 
-import com.epam.eugene.builder.TariffsSaxBuilder;
-import com.epam.eugene.exception.TariffErrorHandler;
-import com.epam.eugene.parser.sax.ConsoleTariffHandler;
-import com.epam.eugene.parser.sax.TariffXmlTag;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import com.epam.eugene.parser.builder.AbstractTariffsBuilder;
+import com.epam.eugene.factory.TariffBuilderFactory;
 
 public class Main {
     public static void main(String... args) {
-//        String type = "stax";
-//        AbstractTariffsBuilder builder = TariffBuilderFactory.createStudentBuilder(type);
-//        builder.buildSetTariffs("data_xml/tariffs.xml");
-//        System.out.println(builder.getTariffs());
+        String type = "dom";
+        AbstractTariffsBuilder builder = TariffBuilderFactory.createStudentBuilder(type);
+        builder.buildSetTariffs("data_xml/tariffs.xml");
+        System.out.println(builder.getTariffs());
+        System.out.println(builder.getTariffs().size());
         //Validation
 //        String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
 //        String fileName = "data_xml/tariffs.xml";
@@ -51,9 +41,9 @@ public class Main {
 //            e.printStackTrace();
 //        }
 
-        TariffsSaxBuilder saxBuilder = new TariffsSaxBuilder();
-        saxBuilder.buildSetTariffs("data_xml/tariffs.xml");
-        System.out.println(saxBuilder.getTariffs());
+//        TariffsSaxBuilder saxBuilder = new TariffsSaxBuilder();
+//        saxBuilder.buildSetTariffs("data_xml/tariffs.xml");
+//        System.out.println(saxBuilder.getTariffs());
 
     }
 }

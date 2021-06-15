@@ -131,6 +131,7 @@ public class Tariff {
         sb.append(", \noperatorName=").append(operatorName);
         sb.append(", \ncallPrices").append(callPrices);
         sb.append(", \nparameters").append(parameters);
+        sb.append("\n");
         return sb.toString();
     }
 }

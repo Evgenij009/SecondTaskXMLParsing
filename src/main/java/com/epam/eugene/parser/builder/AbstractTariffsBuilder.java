@@ -1,4 +1,4 @@
-package com.epam.eugene.builder;
+package com.epam.eugene.parser.builder;
 
 import com.epam.eugene.entity.Tariff;
 

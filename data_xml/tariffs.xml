@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tariffs xmlns="urn:by.epam.eugene">
+
     <tariff vendorCode="AB0001" localDate="2020-06-09">
         <name>Bezlimitishe</name>
         <payroll>25.5</payroll>

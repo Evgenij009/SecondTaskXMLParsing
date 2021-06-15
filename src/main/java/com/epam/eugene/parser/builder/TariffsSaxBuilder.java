@@ -1,9 +1,7 @@
-package com.epam.eugene.builder;
+package com.epam.eugene.parser.builder;
 
-import com.epam.eugene.builder.AbstractTariffsBuilder;
-import com.epam.eugene.exception.TariffErrorHandler;
 import com.epam.eugene.entity.Tariff;
-import com.epam.eugene.exception.TariffException;
+import com.epam.eugene.exception.TariffErrorHandler;
 import com.epam.eugene.parser.sax.TariffHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;

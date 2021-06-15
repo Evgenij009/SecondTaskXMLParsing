@@ -1,8 +1,8 @@
 package com.epam.eugene.factory;
 
-import com.epam.eugene.builder.AbstractTariffsBuilder;
-import com.epam.eugene.parser.dom.TariffsDomBuilder;
-import com.epam.eugene.builder.TariffsSaxBuilder;
+import com.epam.eugene.parser.builder.AbstractTariffsBuilder;
+import com.epam.eugene.parser.builder.TariffsDomBuilder;
+import com.epam.eugene.parser.builder.TariffsSaxBuilder;
 import com.epam.eugene.parser.stax.TariffsStaxBuilder;
 
 public class TariffBuilderFactory {
