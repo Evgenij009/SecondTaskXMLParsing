@@ -50,7 +50,7 @@
 
     <simpleType name="Name">
         <restriction base="string">
-            <pattern value="[a-zA-Z]{2,50}"/>
+            <pattern value="[a-zA-Z01-9]{2,50}"/>
         </restriction>
     </simpleType>
 
