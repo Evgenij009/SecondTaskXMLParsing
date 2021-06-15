@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tariffs xmlns="urn:by.epam.eugene">
+
+    <tariff vendorCode="AB0001" localDate="2018-06-09">
+        <name>SuperMax10</name>
+        <payroll>15.9</payroll>
+        <smsPrice>0.03</smsPrice>
+        <operatorName>MTS</operatorName>
+        <callPrices>
+            <priceWithinTheNetwork>0.14</priceWithinTheNetwork>
+            <priceOutsideNetwork>0.21</priceOutsideNetwork>
+            <pricelandlinePhones>0.09</pricelandlinePhones>
+        </callPrices>
+        <parameters>
+            <feeConnection>0.5</feeConnection>
+            <favoriteNumber>253234321</favoriteNumber>
+            <tariffication>MINUTE</tariffication>
+        </parameters>
+    </tariff>
+
+    <tariff vendorCode="AB0002" localDate="2020-06-09">
+        <name>SuperMax50</name>
+        <payroll>25.5</payroll>
+        <smsPrice>0.03</smsPrice>
+        <operatorName>MTS</operatorName>
+        <callPrices>
+            <priceWithinTheNetwork>0.07</priceWithinTheNetwork>
+            <priceOutsideNetwork>0.1</priceOutsideNetwork>
+            <pricelandlinePhones>0.09</pricelandlinePhones>
+        </callPrices>
+        <parameters>
+            <feeConnection>0.5</feeConnection>
+            <favoriteNumber>253234321</favoriteNumber>
+            <tariffication>MINUTE</tariffication>
+        </parameters>
+    </tariff>
+
+    <tariff vendorCode="AB0003" localDate="2020-06-09">
+        <name>SuperMax25</name>
+        <payroll>18.2</payroll>
+        <smsPrice>0.03</smsPrice>
+        <operatorName>MTS</operatorName>
+        <callPrices>
+            <priceWithinTheNetwork>0.07</priceWithinTheNetwork>
+            <priceOutsideNetwork>0.1</priceOutsideNetwork>
+            <pricelandlinePhones>0.09</pricelandlinePhones>
+        </callPrices>
+        <parameters>
+            <feeConnection>0.5</feeConnection>
+            <favoriteNumber>253234321</favoriteNumber>
+            <tariffication>MINUTE</tariffication>
+        </parameters>
+    </tariff>
+
+    <tariff vendorCode="AB0004" localDate="2020-06-09">
+        <name>SuperMax50</name>
+        <payroll>25.5</payroll>
+        <smsPrice>0.03</smsPrice>
+        <operatorName>MTS</operatorName>
+        <callPrices>
+            <priceWithinTheNetwork>0.07</priceWithinTheNetwork>
+            <priceOutsideNetwork>0.1</priceOutsideNetwork>
+            <pricelandlinePhones>0.09</pricelandlinePhones>
+        </callPrices>
+        <parameters>
+            <feeConnection>0.5</feeConnection>
+            <favoriteNumber>253234321</favoriteNumber>
+            <tariffication>MINUTE</tariffication>
+        </parameters>
+    </tariff>
+
+</tariffs>

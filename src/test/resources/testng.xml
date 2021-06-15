@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name = "ScriptForFullCycle" verbose="1">
+    <test name = "FullCircleWorkTest">
+        <groups>
+            <run>
+                <include name = "Validator"/>
+                <include name="Parser"/>
+            </run>
+        </groups>
+        <classes>
+            <class name = "by.epam.eugene.validator.CustomFileValidatorTest"/>
+            <class name = "by.epam.eugene.validator.XMLValidatorTest"/>
+            <class name = "by.epam.eugene.parser.TariffsDomParserTest"/>
+            <class name="by.epam.eugene.parser.TariffsSaxParserTest"/>
+            <class name="by.epam.eugene.parser.TariffsStaxParserTest"/>
+        </classes>
+    </test>
+
+
+</suite>
