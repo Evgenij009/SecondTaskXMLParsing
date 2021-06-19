@@ -26,14 +26,14 @@ public class XmlParserTestDataProvider {
     private static final List<Tariff> TARIFFS = new ArrayList<>
                     (Arrays.asList(FIRST_TARIFF, SECOND_TARIFF, THIRD_TARIFF, FOURTH_TARIFF));
 
-    @DataProvider(name = "dataProvider")
+    @DataProvider(name = "fourTariffs")
     public static Object[][] dataProviderParseXmlFile() {
         return new Object[][] {
                 {CORRECT_XML_FILE_PATH, TARIFFS}
         };
     }
 
-    @DataProvider(name = "dataProvider_pathFiles")
+    @DataProvider(name = "invalidPathFile")
     public static Object[][] dataProviderParseInvalidXmlFile() {
         return new Object[][] {
                 {INCORRECT_XML_FILE_PATH}, {NOT_EXISTING_FILE_PATH}

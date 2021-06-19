@@ -13,7 +13,7 @@ import static org.testng.Assert.assertThrows;
 @Test (groups = "Parser")
 public class TariffsStaxParserTest {
 
-    @Test(dataProvider = "dataProvider", dataProviderClass = XmlParserTestDataProvider.class)
+    @Test(dataProvider = "fourTariffs", dataProviderClass = XmlParserTestDataProvider.class)
     public void testTariffs(String xmlPathFile, List<Tariff> expected) throws TariffException {
         TariffsStaxParser tariffsStaxParser = new TariffsStaxParser();
         tariffsStaxParser.buildSetTariffs(xmlPathFile);
@@ -21,7 +21,7 @@ public class TariffsStaxParserTest {
         Assert.assertEquals(expected.toString(), actual.toString());
     }
 
-    @Test(dataProvider = "dataProvider_pathFiles", dataProviderClass = XmlParserTestDataProvider.class)
+    @Test(dataProvider = "invalidPathFile", dataProviderClass = XmlParserTestDataProvider.class)
     public void test(String xmlPathFile) {
         TariffsStaxParser tariffsStaxParser = new TariffsStaxParser();
         assertThrows(TariffException.class, () -> tariffsStaxParser.buildSetTariffs(xmlPathFile));
